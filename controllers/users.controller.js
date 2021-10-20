@@ -1,48 +1,48 @@
-const User = require("../models/User.model")
+const User = require("../models/User.model");
 
 module.exports.usersController = {
   addUser: async (req, res) => {
     try {
       await User.create({
         name: req.body.name,
-      })
-      res.json("Пользователь добавлен")
+      });
+      res.json("Пользователь добавлен");
     } catch (e) {
-      res.json("Ошибка")
+      res.json("Ошибка");
     }
   },
   getAllUsers: async (req, res) => {
     try {
-      const users = await User.find()
-      res.json(users)
+      const users = await User.find();
+      res.json(users);
     } catch (e) {
-      res.json("Ошибка")
+      res.json("Ошибка");
     }
   },
   updateUser: async (req, res) => {
     try {
-      await User.findByIdAndUpdate(req.params.id, { $set: req.body })
-      res.json("Пользователь изменен")
+      await User.findByIdAndUpdate(req.params.id, { $set: req.body });
+      res.json("Пользователь изменен");
     } catch (e) {
-      res.json("Ошибка")
+      res.json("Ошибка");
     }
   },
   deleteUser: async (req, res) => {
     try {
-      await User.findByIdAndRemove(req.params.id)
-      res.json("Пользователь удален")
+      await User.findByIdAndRemove(req.params.id);
+      res.json("Пользователь удален");
     } catch (e) {
-      res.json("Ошибка")
+      res.json("Ошибка");
     }
   },
   upMoney: async (req, res) => {
-      try {
-          const user = await User.findById(req.params.id)
-          user.money += Number(req.params.money)
-          user.save()
-          res.json(user)
-      } catch (e) {
-          res.json(e)
-      }
-  }
-}
+    try {
+      const user = await User.findById(req.params.id);
+      user.money += Number(req.params.money);
+      user.save();
+      res.json(user);
+    } catch (e) {
+      res.json(e);
+    }
+  },
+};
