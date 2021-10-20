@@ -25,6 +25,15 @@ module.exports.medicamentsController = {
       return res.json(`Не удалось вывести все лекарства ${e}`);
     }
   },
+  getMedicamentByCategory: async (req, res) => {
+    try {
+      const medicament = await Medicament.find({ category: req.params.id });
+
+      return res.json(medicament);
+    } catch (e) {
+      return res.json(`Не удалось выввести лекарства по категорям ${e}`);
+    }
+  },
   getMedicament: async (req, res) => {
     try {
       const medicament = await Medicament.findById(req.params.id);
