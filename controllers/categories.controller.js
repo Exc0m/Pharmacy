@@ -4,7 +4,7 @@ module.exports.categoryController = {
   getCategories: async (req, res) => {
     try {
       const categories = await Category.find();
-      returnres.json(categories);
+      return res.json(categories);
     } catch (error) {
       res.json({ error: "Ошибка запроса" });
     }
@@ -14,7 +14,7 @@ module.exports.categoryController = {
       const category = await Category.create({
         name: req.body.name,
       });
-      returnres.json({ message: "Категори создана", category });
+      return res.json({ message: "Категори создана", category });
     } catch (error) {
       res.json({ error: "Ошибка запроса" });
     }
@@ -24,7 +24,7 @@ module.exports.categoryController = {
       const category = await Category.findByIdAndUpdate(req.params.id, {
         name: req.body.name,
       });
-      returnres.json({ message: "Категори изменена", category });
+      return res.json({ message: "Категори изменена", category });
     } catch (error) {
       res.json({ error: "Ошибка запроса" });
     }
@@ -32,7 +32,7 @@ module.exports.categoryController = {
   deleteCategory: async (req, res) => {
     try {
       const category = await Category.findByIdAndRemove(req.params.id);
-      returnres.json({ message: "Категори удалена", category });
+      return res.json({ message: "Категори удалена", category });
     } catch (error) {
       res.json({ error: "Ошибка запроса" });
     }
