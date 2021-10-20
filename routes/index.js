@@ -7,5 +7,4 @@ router.use('/medicaments',require('./medicaments.route'))
 router.use('/cart',require('./cart.route'))
 router.use('/users',require('./users.route'))
 
-
 module.exports = router;
