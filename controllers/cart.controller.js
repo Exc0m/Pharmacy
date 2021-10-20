@@ -6,8 +6,8 @@ module.exports.cartsController = {
   addToCart: async (req, res) => {
     try {
       const cart = await Cart.findOne({ user: req.params.userId })
-      const medicament = await Medicament.findOne(req.params.medicamentId)
-      const user = await User.findOne(req.params.userId)
+      const medicament = await Medicament.findById(req.params.medicamentId)
+      const user = await User.findById(req.params.userId)
 
       if (!cart) {
         await Cart.create({
@@ -34,7 +34,7 @@ module.exports.cartsController = {
   removeCartItem: async (req, res) => {
     try {
       const cart = await Cart.findOne({ user: req.params.userId })
-      const medicament = await Medicament.findOne(req.params.medicamentId)
+      const medicament = await Medicament.findById(req.params.medicamentId)
 
       await Cart.updateOne(
         { user: req.params.userId },
@@ -66,7 +66,7 @@ module.exports.cartsController = {
   paymentCart: async (req, res) => {
     try {
       const cart = await Cart.findOne({ user: req.params.userId })
-      const user = await User.findOne(req.params.userId)
+      const user = await User.findById(req.params.userId)
 
       if (user.money < cart.total) {
         return res.json("У вас не хватает денег")
