@@ -35,4 +35,14 @@ module.exports.usersController = {
       res.json("Ошибка")
     }
   },
+  upMoney: async (req, res) => {
+      try {
+          const user = await User.findById(req.params.id)
+          user.money += Number(req.params.money)
+          user.save()
+          res.json(user)
+      } catch (e) {
+          res.json(e)
+      }
+  }
 }
