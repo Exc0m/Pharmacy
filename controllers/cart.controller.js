@@ -80,7 +80,7 @@ module.exports.cartsController = {
       await user.save()
       await cart.save()
 
-      res.json("Корзина очищена")
+      res.json("Покупка выполнена")
     } catch (e) {
       res.json(e)
     }
